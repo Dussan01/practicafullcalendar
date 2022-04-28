@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <link href='lib/main.css' rel='stylesheet' />
+    <script src='lib/main.js'></script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'timeGridWeek',
+        //   headerToolbar: { center: 'dayGridMonth,timeGridWeek' }, // buttons for switching between views
+            events: [
+                {
+                    id: 1,
+                    startRecur: '2022-04-27', //Me indica donde comienza las fechas
+                    endRecur:'2022-04-30', // Me indica donde comienza las fechas limite
+                    daysOfWeek:[1,2,3,4,5], // los dias que asigno
+                    title: 'tarea', 
+                    // start: '2022-04-27',
+
+                    startTime: '05:00'  //hora que comienza
+                    },
+                    {
+                    groupId:1,
+                    interactive: false,
+                    title: 'aaaa',
+                    start: '2022-04-27 08:00'
+                    },
+                    {
+                    groupId:1,
+                    title: 'Event1',
+                    start: '2022-04-28 09:00'
+                    },
+                    {
+                    id: 2,
+                    title: 'Event2',
+                    start: '2022-04-26',
+                    backgroundColor: 'black'
+
+
+                    },
+                    {
+                    id: "dat",
+                    // allDay: true,
+                    title: 'Event23',
+                    start: '2022-04-29 10:00',
+                    color: 'black',
+                    backgroundColor: 'black'
+                    },
+                    {
+                    id: 'a',
+                    title: 'my event',
+                    start: '2022-04-29'
+                    },
+                    {
+                        title: 'BCH237',
+                        start: '2022-04-29T10:30:00',
+                        end: '2022-04-29T11:30:00',
+                        extendedProps: {
+                            department: 'BioChemistry'
+                        },
+                        description: 'Lecture'
+                        }
+                                    // etc...
+                    ],    
+                    eventDidMount: function(info) {
+                        console.log(info.event.extendedProps);
+                        // {description: "Lecture", department: "BioChemistry"}
+                    }
+                    
+            // businessHours: {
+            //     // days of week. an array of zero-based day of week integers (0=Sunday)
+            //     daysOfWeek: [ 1, 2, 3, 4 ], // Monday - Thursday
+
+            //     startTime: '10:00', // a start time (10am in this example)
+            //     endTime: '18:00', // an end time (6pm in this example)
+            // }       
+        });
+        
+        calendar.render();
+
+        var event = calendar.getEventById("dat") // an event object!
+        var start = event.start // a property (a Date object)
+        console.log(start.toISOString()) // "2018-09-01T00:00:00.000Z"
+        
+    });
+    
+
+    </script>
+  </head>
+  <body>
+    <div id='calendar'></div>
+    <button onclick="pruebaeliminar()">Eliminar</button>
+  </body>
+</html>
